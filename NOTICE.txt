@@ -1,0 +1,9 @@
+译页 / YIYE
+Copyright (C) 2026 zyxingdev
+
+本项目自有代码按 GNU Affero General Public License version 3 only (AGPL-3.0-only) 发布。
+完整许可证：LICENSE
+对应源码：https://github.com/zyxingdev/translator
+
+本程序按现状提供，无任何担保，详见许可证。
+第三方依赖和字体保留各自原有版权及许可证，详见 THIRD_PARTY_NOTICES.md。

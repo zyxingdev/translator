@@ -25,3 +25,20 @@ if(!cached){
  try{await writeFile(temporary,bytes);await rename(temporary,fontPath);}finally{await rm(temporary,{force:true});}
 }
 console.log('Same-origin PDF resources and verified Chinese font are ready.');
+
+
+// Preserve project and third-party license notices in every static deployment.
+await cp(join(root,'LICENSE'),join(root,'public/LICENSE'));
+await cp(join(root,'NOTICE.txt'),join(root,'public/NOTICE.txt'));
+await mkdir(join(root,'public/licenses'),{recursive:true});
+const dependencyLock=JSON.parse(await readFile(join(root,'package-lock.json'),'utf8'));
+const {readdir}=await import('node:fs/promises');
+for(const [path,metadata] of Object.entries(dependencyLock.packages||{})){
+ if(!path.startsWith('node_modules/')||metadata.dev)continue;
+ const dir=join(root,path);let files=[];try{files=await readdir(dir);}catch{continue;}
+ for(const name of files.filter(name=>/^(?:licen[cs]e|copying|notice)(?:[.-].*)?$/i.test(name))){
+  const target=path.replaceAll('/','__')+'__'+name;
+  await cp(join(dir,name),join(root,'public/licenses',target),{recursive:true});
+ }
+}
+console.log('Project and dependency license notices are included in static assets.');

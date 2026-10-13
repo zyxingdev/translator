@@ -2163,7 +2163,10 @@ export default function App() {
             <BookOpen size={13} />
             译页 · 为认真阅读而做
           </span>
-          <span>本机处理 · 自主选择 · 自由导出</span>
+          <div className="license-links">
+            © 2026 zyxingdev · <a href="./LICENSE" target="_blank" rel="noreferrer">AGPL-3.0 · 无担保</a>
+            {" · "}<a href="https://github.com/zyxingdev/translator" target="_blank" rel="noreferrer">对应源码</a>
+          </div>
         </footer>
       </div>
       {error && (

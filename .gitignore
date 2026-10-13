@@ -13,3 +13,8 @@ public/fonts/*.tmp
 tests/fixtures/
 test-results/
 playwright-report/
+
+# Generated license copies included in dist by prepare-assets
+public/LICENSE
+public/NOTICE.txt
+public/licenses/
